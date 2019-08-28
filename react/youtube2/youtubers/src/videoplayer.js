@@ -1,83 +1,54 @@
-import React from "react";
-import playbutton from "./PlayButton.png";
-import YouTube from 'react-youtube';
+import React from 'react'
+import ReactPlayer from 'react-player'
+import StartStop from './StartStop.png'
+import PlayButton from './PlayButton.png'
 
-const VideoPlayer = (props) => {
-    const opts = {
-     height: '390',
-      width: '640'
-    }
+export default class VideoPlayer extends React.Component{
+  state = {
+    playing: true,
+  }
 
-  return(
-    props.videoId === ""?
-       <div className="videoplayer">
-        <img className="playButton" alt="Play Button" src={playbutton}/>
-      </div>
-      :
-      props.videoId === undefined?
-      <h4>Error Search Again :)</h4>
-      :
-      <YouTube
-        opts={opts}
-        videoId={props.videoId}
-      />
-  )
+  handlePlayPause = () => {
+    this.setState({ playing: !this.state.playing })
+  }
+
+  handlePlay = () => {
+    this.setState({ playing: true })
+  }
+
+  handlePause = () => {
+     this.setState({ playing: false })
+   }
+
+  render(){
+    const { playing } = this.state
+    return (
+      <>
+        {this.props.videoId === ""?
+          <div className="videoplayer">
+          <img className="playButton" alt="Play Button" src={PlayButton}/>
+          </div>
+        :
+        this.props.videoId === undefined?
+          <h4>Error Search Again :)</h4>
+        :
+          <ReactPlayer
+            width='100%'
+            height='20em'
+            url={this.props.url}
+            playing={playing}
+            controls={true}
+            onPlay={this.handlePlay}
+            onPause={this.handlePause}
+            onError={e => console.log('onError', e)}
+          />
+        }
+        <img
+          className="startStop"
+          src={StartStop}
+          onClick={this.handlePlayPause}
+        />
+      </>
+    )
+  }
 }
-export default VideoPlayer
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React from "react";
-// import playbutton from "./PlayButton.png";
-// import startstop from "./StartStop.png";
-// import YouTube from 'react-youtube';
-//
-// export default class VideoPlayer extends React.Component {
-//
-//   handleClick = () => {
-//     this.setState({})
-//   }
-//
-//   render () {
-//     debugger
-//     const opts = {
-//      height: '390',
-//       width: '640'
-//     }
-//
-//      return (
-//       <>
-//           {this.props.videoId === ""?
-//           <div className="videoplayer">
-//             <img className="playButton" alt="Play Button" src={playbutton}/>
-//           </div>
-//           :
-//           this.props.videoId === undefined?
-//           <h4>Error Search Again :)</h4>
-//           :
-//           <YouTube
-//             opts={opts}
-//             videoId={this.props.videoId}
-//           />
-//           }
-//         <img onClick={this.handleClick}alt="start/stop" className="startStop" src={startstop} />
-//       </>
-//     );
-//   }
-// }
