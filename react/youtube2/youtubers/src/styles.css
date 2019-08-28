@@ -1,0 +1,39 @@
+.videoplayer {
+  font-family: sans-serif;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  border: solid;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+.searchGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.searchbox {
+  border: solid;
+  border-width: thin;
+  padding:.5em;
+}
+
+.playButton {
+  grid-column: 3/3;
+  width: 10em;
+  grid-row: 2/3;
+  align-self: start;
+}
+
+.startStop {
+  width: 2em;
+  margin-top: 1em;
+}
+
+.attribute {
+  border: solid;
+  border-width: thin;
+  margin: 0.2em;
+}
+
+.att {
+  margin: 0.2em;
+}
