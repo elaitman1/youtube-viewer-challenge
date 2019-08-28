@@ -9,7 +9,7 @@ const Attributes =(props) => {
         {!atts? 'Title' : atts.snippet.title}
         </div>
       </div>
-      
+
       <div className="attribute">
         <div className="att">
           {!atts? 'Description' : atts.snippet.description}
